@@ -285,10 +285,10 @@ File: index.html
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Pokédex</title>
-    <link rel="stylesheet" href="styles/main.css?v=6" />
-    <link rel="stylesheet" href="styles/retro-ui.css?v=6" />
-    <link rel="stylesheet" href="styles/themes.css?v=6" />
-    <link rel="stylesheet" href="styles/animations.css?v=6" />
+    <link rel="stylesheet" href="styles/main.css?v=7" />
+    <link rel="stylesheet" href="styles/retro-ui.css?v=7" />
+    <link rel="stylesheet" href="styles/themes.css?v=7" />
+    <link rel="stylesheet" href="styles/animations.css?v=7" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -357,40 +357,59 @@ File: index.html
                     </button>
                 </div>
 
-                <div class="settings-section">
-                    <span class="settings-label">Sprite Display Mode</span>
-                    <div class="settings-radio-group">
-                        <label class="settings-radio-pill">
-                            <input type="radio" name="display-sprite-mode" value="artwork" id="mode-artwork">
-                            <span>Official Artwork</span>
-                        </label>
-                        <label class="settings-radio-pill">
-                            <input type="radio" name="display-sprite-mode" value="animated" id="mode-animated">
-                            <span>3D / Animated</span>
-                        </label>
-                        <label class="settings-radio-pill">
-                            <input type="radio" name="display-sprite-mode" value="pixel" id="mode-pixel">
-                            <span>Pixel Sprites</span>
-                        </label>
+                <div class="settings-section settings-accordion">
+                    <button type="button" class="settings-accordion-trigger" aria-expanded="false" aria-controls="settings-sprite-panel">
+                        <span class="settings-label">Sprite Display Mode</span>
+                        <i class="fa-solid fa-chevron-down settings-accordion-arrow" aria-hidden="true"></i>
+                    </button>
+                    <div id="settings-sprite-panel" class="settings-accordion-panel">
+                        <div class="settings-accordion-inner">
+                            <div class="settings-radio-group">
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="display-sprite-mode" value="artwork" id="mode-artwork">
+                                    <span>Official Artwork</span>
+                                </label>
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="display-sprite-mode" value="animated" id="mode-animated">
+                                    <span>3D / Animated</span>
+                                </label>
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="display-sprite-mode" value="pixel" id="mode-pixel">
+                                    <span>Pixel Sprites</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="settings-section">
-                    <span class="settings-label">Theme / UI Style</span>
-                    <div class="ui-theme-placeholder">
-                        <select id="theme-selector" class="settings-select">
-                            <option value="default">Classic Pokédex (Default)</option>
-                            <option value="classic-dark">Classic Dark</option>
-                            <option value="retro-gb">Game Boy Retro</option>
-                            <option value="bloom">Bloom (Floral Pastel)</option>
-                        </select>
+                <div class="settings-section settings-accordion">
+                    <button type="button" class="settings-accordion-trigger" aria-expanded="false" aria-controls="settings-theme-panel">
+                        <span class="settings-label">Theme / UI Style</span>
+                        <i class="fa-solid fa-chevron-down settings-accordion-arrow" aria-hidden="true"></i>
+                    </button>
+                    <div id="settings-theme-panel" class="settings-accordion-panel">
+                        <div class="settings-accordion-inner">
+                            <div class="ui-theme-placeholder">
+                                <select id="theme-selector" class="settings-select">
+                                    <option value="default">Classic Pokédex (Default)</option>
+                                    <option value="classic-dark">Classic Dark</option>
+                                    <option value="retro-gb">Game Boy Retro</option>
+                                    <option value="bloom">Bloom (Floral Pastel)</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Credits & Legal Disclaimer -->
-                <div class="settings-section settings-legal-section">
-                    <span class="settings-label">Credits &amp; Legal Disclaimer</span>
-                    <div class="settings-legal-card">
+                <div class="settings-section settings-accordion settings-legal-section">
+                    <button type="button" class="settings-accordion-trigger" aria-expanded="false" aria-controls="settings-legal-panel">
+                        <span class="settings-label">Credits &amp; Legal Disclaimer</span>
+                        <i class="fa-solid fa-chevron-down settings-accordion-arrow" aria-hidden="true"></i>
+                    </button>
+                    <div id="settings-legal-panel" class="settings-accordion-panel">
+                        <div class="settings-accordion-inner">
+                            <div class="settings-legal-card">
                         <p class="legal-notice">
                             <strong>Unofficial Fan Project:</strong> This application is a free, non-commercial, educational Pokédex built by fans. It is <strong>not affiliated with, endorsed, sponsored, or approved by</strong> Nintendo, Creatures Inc., GAME FREAK inc., or The Pokémon Company.
                         </p>
@@ -421,6 +440,8 @@ File: index.html
                             <div class="legal-credit-row">
                                 <span class="credit-role">Source License</span>
                                 <span class="credit-value">Open-Source Educational (MIT)</span>
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>
@@ -787,7 +808,7 @@ File: index.html
         </div>
     </nav>
 
-    <script type="module" src="js/app.js?v=6"></script>
+    <script type="module" src="js/app.js?v=7"></script>
     <!-- Before </body> -->
     <script>
     if ('serviceWorker' in navigator) {
@@ -833,7 +854,7 @@ File: manifest.json
 File: sw.js
 ================================================
 // sw.js
-const SHELL_CACHE = "pokedex-shell-v13";
+const SHELL_CACHE = "pokedex-shell-v14";
 const API_CACHE = "pokedex-api-v1";
 const MAX_API_ENTRIES = 120;
 
@@ -15255,7 +15276,18 @@ if (settingsCloseBtn && settingsModal) {
 }
 if (settingsModal) {
   settingsModal.addEventListener("click", (e) => {
-    if (e.target === settingsModal) settingsModal.classList.add("hidden");
+    if (e.target === settingsModal) {
+      settingsModal.classList.add("hidden");
+      return;
+    }
+
+    const trigger = e.target.closest(".settings-accordion-trigger");
+    if (trigger) {
+      const section = trigger.closest(".settings-accordion");
+      if (!section) return;
+      const isOpen = section.classList.toggle("open");
+      trigger.setAttribute("aria-expanded", String(isOpen));
+    }
   });
 }
 
@@ -18531,8 +18563,69 @@ body {
   margin: 4px 0 0 0;
 }
 
+.settings-accordion {
+  margin-bottom: 12px;
+  gap: 0;
+}
+
+.settings-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 4px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  color: #64748b;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.settings-accordion-trigger:hover,
+.settings-accordion-trigger:hover .settings-label {
+  color: #0f172a;
+}
+
+.settings-accordion-arrow {
+  font-size: 0.78rem;
+  color: #64748b;
+  transition: transform 0.25s ease, color 0.2s ease;
+}
+
+.settings-accordion.open .settings-accordion-arrow {
+  transform: rotate(180deg);
+  color: #ef5350;
+}
+
+.settings-accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows 0.25s ease, opacity 0.2s ease, visibility 0.25s;
+}
+
+.settings-accordion.open .settings-accordion-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+
+.settings-accordion-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.settings-accordion-inner > *:first-child {
+  margin-top: 10px;
+}
+
 .settings-legal-section {
-  margin-top: 4px;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -19350,7 +19443,8 @@ body {
 
 #pokemon-modal .modal-bottom-details,
 #pokemon-modal .table-scroll-wrap,
-#team-modal .modal-card {
+#team-modal .modal-card,
+#settings-modal .modal-card {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -19358,7 +19452,8 @@ body {
 #pokemon-modal .modal-card::-webkit-scrollbar,
 #pokemon-modal .modal-bottom-details::-webkit-scrollbar,
 #pokemon-modal .table-scroll-wrap::-webkit-scrollbar,
-#team-modal .modal-card::-webkit-scrollbar {
+#team-modal .modal-card::-webkit-scrollbar,
+#settings-modal .modal-card::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
@@ -22073,6 +22168,7 @@ File: styles/retro-ui.css
 
 /* Settings Action / Install Button */
 .settings-action-btn {
+  font-family: inherit;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -22692,6 +22788,34 @@ body,
   color: #38bdf8;
 }
 
+[data-theme="classic-dark"] .settings-accordion-trigger {
+  border-bottom-color: var(--dark-border);
+  color: var(--dark-text-muted);
+}
+
+[data-theme="classic-dark"] .settings-accordion-trigger:hover,
+[data-theme="classic-dark"] .settings-accordion-trigger:hover .settings-label {
+  color: var(--dark-text);
+}
+
+[data-theme="classic-dark"] .settings-accordion-arrow {
+  color: var(--dark-text-muted);
+}
+
+[data-theme="classic-dark"] .settings-accordion.open .settings-accordion-arrow {
+  color: #38bdf8;
+}
+
+[data-theme="classic-dark"] #settings-modal .modal-card {
+  scrollbar-width: none !important;
+}
+
+[data-theme="classic-dark"] #settings-modal .modal-card::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 [data-theme="classic-dark"] .filter-drawer,
 [data-theme="classic-dark"] .filter-drawer .drawer-inner {
   background: #111827 !important;
@@ -23294,6 +23418,26 @@ body,
 
 [data-theme="retro-gb"] .settings-legal-card a {
   text-decoration: underline;
+}
+
+[data-theme="retro-gb"] .settings-accordion-trigger {
+  border-bottom: 2px solid var(--gb-darkest) !important;
+  color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .settings-accordion-arrow,
+[data-theme="retro-gb"] .settings-accordion.open .settings-accordion-arrow {
+  color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] #settings-modal .modal-card {
+  scrollbar-width: none !important;
+}
+
+[data-theme="retro-gb"] #settings-modal .modal-card::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Camera Scanner Modal */
@@ -24387,6 +24531,34 @@ body[data-theme="bloom"] {
 
 [data-theme="bloom"] .settings-legal-card a {
   color: var(--bloom-accent-deep) !important;
+}
+
+[data-theme="bloom"] .settings-accordion-trigger {
+  border-bottom-color: var(--bloom-border) !important;
+  color: var(--bloom-text-muted) !important;
+}
+
+[data-theme="bloom"] .settings-accordion-trigger:hover,
+[data-theme="bloom"] .settings-accordion-trigger:hover .settings-label {
+  color: var(--bloom-text) !important;
+}
+
+[data-theme="bloom"] .settings-accordion-arrow {
+  color: var(--bloom-text-muted) !important;
+}
+
+[data-theme="bloom"] .settings-accordion.open .settings-accordion-arrow {
+  color: var(--bloom-accent-deep) !important;
+}
+
+[data-theme="bloom"] #settings-modal .modal-card {
+  scrollbar-width: none !important;
+}
+
+[data-theme="bloom"] #settings-modal .modal-card::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Mini-Game Modal */

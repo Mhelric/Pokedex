@@ -753,6 +753,7 @@
 
 /* Settings Action / Install Button */
 .settings-action-btn {
+  font-family: inherit;
   display: flex;
   align-items: center;
   gap: 12px;

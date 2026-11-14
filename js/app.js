@@ -1083,7 +1083,18 @@ if (settingsCloseBtn && settingsModal) {
 }
 if (settingsModal) {
   settingsModal.addEventListener("click", (e) => {
-    if (e.target === settingsModal) settingsModal.classList.add("hidden");
+    if (e.target === settingsModal) {
+      settingsModal.classList.add("hidden");
+      return;
+    }
+
+    const trigger = e.target.closest(".settings-accordion-trigger");
+    if (trigger) {
+      const section = trigger.closest(".settings-accordion");
+      if (!section) return;
+      const isOpen = section.classList.toggle("open");
+      trigger.setAttribute("aria-expanded", String(isOpen));
+    }
   });
 }
 

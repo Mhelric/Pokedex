@@ -574,6 +574,34 @@ body,
   color: #38bdf8;
 }
 
+[data-theme="classic-dark"] .settings-accordion-trigger {
+  border-bottom-color: var(--dark-border);
+  color: var(--dark-text-muted);
+}
+
+[data-theme="classic-dark"] .settings-accordion-trigger:hover,
+[data-theme="classic-dark"] .settings-accordion-trigger:hover .settings-label {
+  color: var(--dark-text);
+}
+
+[data-theme="classic-dark"] .settings-accordion-arrow {
+  color: var(--dark-text-muted);
+}
+
+[data-theme="classic-dark"] .settings-accordion.open .settings-accordion-arrow {
+  color: #38bdf8;
+}
+
+[data-theme="classic-dark"] #settings-modal .modal-card {
+  scrollbar-width: none !important;
+}
+
+[data-theme="classic-dark"] #settings-modal .modal-card::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 [data-theme="classic-dark"] .filter-drawer,
 [data-theme="classic-dark"] .filter-drawer .drawer-inner {
   background: #111827 !important;
@@ -1176,6 +1204,26 @@ body,
 
 [data-theme="retro-gb"] .settings-legal-card a {
   text-decoration: underline;
+}
+
+[data-theme="retro-gb"] .settings-accordion-trigger {
+  border-bottom: 2px solid var(--gb-darkest) !important;
+  color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .settings-accordion-arrow,
+[data-theme="retro-gb"] .settings-accordion.open .settings-accordion-arrow {
+  color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] #settings-modal .modal-card {
+  scrollbar-width: none !important;
+}
+
+[data-theme="retro-gb"] #settings-modal .modal-card::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Camera Scanner Modal */
@@ -2269,6 +2317,34 @@ body[data-theme="bloom"] {
 
 [data-theme="bloom"] .settings-legal-card a {
   color: var(--bloom-accent-deep) !important;
+}
+
+[data-theme="bloom"] .settings-accordion-trigger {
+  border-bottom-color: var(--bloom-border) !important;
+  color: var(--bloom-text-muted) !important;
+}
+
+[data-theme="bloom"] .settings-accordion-trigger:hover,
+[data-theme="bloom"] .settings-accordion-trigger:hover .settings-label {
+  color: var(--bloom-text) !important;
+}
+
+[data-theme="bloom"] .settings-accordion-arrow {
+  color: var(--bloom-text-muted) !important;
+}
+
+[data-theme="bloom"] .settings-accordion.open .settings-accordion-arrow {
+  color: var(--bloom-accent-deep) !important;
+}
+
+[data-theme="bloom"] #settings-modal .modal-card {
+  scrollbar-width: none !important;
+}
+
+[data-theme="bloom"] #settings-modal .modal-card::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Mini-Game Modal */

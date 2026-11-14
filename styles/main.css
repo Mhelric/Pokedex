@@ -198,8 +198,69 @@ body {
   margin: 4px 0 0 0;
 }
 
+.settings-accordion {
+  margin-bottom: 12px;
+  gap: 0;
+}
+
+.settings-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 4px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  color: #64748b;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.settings-accordion-trigger:hover,
+.settings-accordion-trigger:hover .settings-label {
+  color: #0f172a;
+}
+
+.settings-accordion-arrow {
+  font-size: 0.78rem;
+  color: #64748b;
+  transition: transform 0.25s ease, color 0.2s ease;
+}
+
+.settings-accordion.open .settings-accordion-arrow {
+  transform: rotate(180deg);
+  color: #ef5350;
+}
+
+.settings-accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows 0.25s ease, opacity 0.2s ease, visibility 0.25s;
+}
+
+.settings-accordion.open .settings-accordion-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+
+.settings-accordion-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.settings-accordion-inner > *:first-child {
+  margin-top: 10px;
+}
+
 .settings-legal-section {
-  margin-top: 4px;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -1017,7 +1078,8 @@ body {
 
 #pokemon-modal .modal-bottom-details,
 #pokemon-modal .table-scroll-wrap,
-#team-modal .modal-card {
+#team-modal .modal-card,
+#settings-modal .modal-card {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -1025,7 +1087,8 @@ body {
 #pokemon-modal .modal-card::-webkit-scrollbar,
 #pokemon-modal .modal-bottom-details::-webkit-scrollbar,
 #pokemon-modal .table-scroll-wrap::-webkit-scrollbar,
-#team-modal .modal-card::-webkit-scrollbar {
+#team-modal .modal-card::-webkit-scrollbar,
+#settings-modal .modal-card::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;

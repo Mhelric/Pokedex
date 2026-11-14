@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Pokédex</title>
-    <link rel="stylesheet" href="styles/main.css?v=6" />
-    <link rel="stylesheet" href="styles/retro-ui.css?v=6" />
-    <link rel="stylesheet" href="styles/themes.css?v=6" />
-    <link rel="stylesheet" href="styles/animations.css?v=6" />
+    <link rel="stylesheet" href="styles/main.css?v=7" />
+    <link rel="stylesheet" href="styles/retro-ui.css?v=7" />
+    <link rel="stylesheet" href="styles/themes.css?v=7" />
+    <link rel="stylesheet" href="styles/animations.css?v=7" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,40 +76,59 @@
                     </button>
                 </div>
 
-                <div class="settings-section">
-                    <span class="settings-label">Sprite Display Mode</span>
-                    <div class="settings-radio-group">
-                        <label class="settings-radio-pill">
-                            <input type="radio" name="display-sprite-mode" value="artwork" id="mode-artwork">
-                            <span>Official Artwork</span>
-                        </label>
-                        <label class="settings-radio-pill">
-                            <input type="radio" name="display-sprite-mode" value="animated" id="mode-animated">
-                            <span>3D / Animated</span>
-                        </label>
-                        <label class="settings-radio-pill">
-                            <input type="radio" name="display-sprite-mode" value="pixel" id="mode-pixel">
-                            <span>Pixel Sprites</span>
-                        </label>
+                <div class="settings-section settings-accordion">
+                    <button type="button" class="settings-accordion-trigger" aria-expanded="false" aria-controls="settings-sprite-panel">
+                        <span class="settings-label">Sprite Display Mode</span>
+                        <i class="fa-solid fa-chevron-down settings-accordion-arrow" aria-hidden="true"></i>
+                    </button>
+                    <div id="settings-sprite-panel" class="settings-accordion-panel">
+                        <div class="settings-accordion-inner">
+                            <div class="settings-radio-group">
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="display-sprite-mode" value="artwork" id="mode-artwork">
+                                    <span>Official Artwork</span>
+                                </label>
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="display-sprite-mode" value="animated" id="mode-animated">
+                                    <span>3D / Animated</span>
+                                </label>
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="display-sprite-mode" value="pixel" id="mode-pixel">
+                                    <span>Pixel Sprites</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="settings-section">
-                    <span class="settings-label">Theme / UI Style</span>
-                    <div class="ui-theme-placeholder">
-                        <select id="theme-selector" class="settings-select">
-                            <option value="default">Classic Pokédex (Default)</option>
-                            <option value="classic-dark">Classic Dark</option>
-                            <option value="retro-gb">Game Boy Retro</option>
-                            <option value="bloom">Bloom (Floral Pastel)</option>
-                        </select>
+                <div class="settings-section settings-accordion">
+                    <button type="button" class="settings-accordion-trigger" aria-expanded="false" aria-controls="settings-theme-panel">
+                        <span class="settings-label">Theme / UI Style</span>
+                        <i class="fa-solid fa-chevron-down settings-accordion-arrow" aria-hidden="true"></i>
+                    </button>
+                    <div id="settings-theme-panel" class="settings-accordion-panel">
+                        <div class="settings-accordion-inner">
+                            <div class="ui-theme-placeholder">
+                                <select id="theme-selector" class="settings-select">
+                                    <option value="default">Classic Pokédex (Default)</option>
+                                    <option value="classic-dark">Classic Dark</option>
+                                    <option value="retro-gb">Game Boy Retro</option>
+                                    <option value="bloom">Bloom (Floral Pastel)</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Credits & Legal Disclaimer -->
-                <div class="settings-section settings-legal-section">
-                    <span class="settings-label">Credits &amp; Legal Disclaimer</span>
-                    <div class="settings-legal-card">
+                <div class="settings-section settings-accordion settings-legal-section">
+                    <button type="button" class="settings-accordion-trigger" aria-expanded="false" aria-controls="settings-legal-panel">
+                        <span class="settings-label">Credits &amp; Legal Disclaimer</span>
+                        <i class="fa-solid fa-chevron-down settings-accordion-arrow" aria-hidden="true"></i>
+                    </button>
+                    <div id="settings-legal-panel" class="settings-accordion-panel">
+                        <div class="settings-accordion-inner">
+                            <div class="settings-legal-card">
                         <p class="legal-notice">
                             <strong>Unofficial Fan Project:</strong> This application is a free, non-commercial, educational Pokédex built by fans. It is <strong>not affiliated with, endorsed, sponsored, or approved by</strong> Nintendo, Creatures Inc., GAME FREAK inc., or The Pokémon Company.
                         </p>
@@ -140,6 +159,8 @@
                             <div class="legal-credit-row">
                                 <span class="credit-role">Source License</span>
                                 <span class="credit-value">Open-Source Educational (MIT)</span>
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>
@@ -506,7 +527,7 @@
         </div>
     </nav>
 
-    <script type="module" src="js/app.js?v=6"></script>
+    <script type="module" src="js/app.js?v=7"></script>
     <!-- Before </body> -->
     <script>
     if ('serviceWorker' in navigator) {
