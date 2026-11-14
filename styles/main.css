@@ -2008,94 +2008,116 @@ body {
 .badge-subtle.badge-method-egg { background: #fce7f3; color: #9d174d; }
 .badge-subtle.badge-method-tutor { background: #ede9fe; color: #6d28d9; }
 
-.game-selector-bottom-card {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+#pokemon-modal .modal-bottom-details {
+  padding-bottom: 56px;
 }
 
-.game-selector-header {
-  width: 100%;
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  text-align: left;
-  font-family: inherit;
-  display: block;
-}
-
-.game-selector-titles {
+.modal-floating-game {
+  position: absolute;
+  bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  right: 16px;
+  z-index: 95;
   display: flex;
   flex-direction: column;
-}
-
-.game-selector-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.game-selector-header .section-title {
-  margin: 0;
-}
-
-.game-selector-hint {
-  font-size: 0.74rem;
-  color: #94a3b8;
-  margin-top: 6px;
-  line-height: 1.35;
-  display: block;
-}
-
-.game-selector-chevron {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #64748b;
-  font-size: 0.78rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, color 0.2s ease;
-  flex-shrink: 0;
-}
-
-.game-selector-header:hover .game-selector-chevron {
-  background: #ef5350;
-  border-color: #ef5350;
-  color: #ffffff;
-}
-
-.game-selector-header.active .game-selector-chevron {
-  transform: rotate(180deg);
-  background: #ef5350;
-  border-color: #ef5350;
-  color: #ffffff;
-}
-
-.game-drawer {
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              margin-top 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.25s ease;
-  opacity: 1;
-  margin-top: 14px;
-}
-
-.game-drawer.collapsed {
-  grid-template-rows: 0fr;
-  margin-top: 0;
-  opacity: 0;
+  align-items: flex-end;
+  gap: 8px;
   pointer-events: none;
 }
 
-.game-drawer-inner {
-  overflow: hidden;
-  min-height: 0;
+.modal-floating-game.hidden {
+  display: none !important;
+}
+
+.modal-floating-game > * {
+  pointer-events: auto;
+}
+
+.game-fab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #e11d48;
+  background: #ef5350;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(239, 83, 80, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.game-fab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(239, 83, 80, 0.45);
+}
+
+.game-fab-btn:active {
+  transform: scale(0.96);
+}
+
+.game-fab-chevron {
+  font-size: 0.7rem;
+  transition: transform 0.22s ease;
+}
+
+.game-fab-btn.active .game-fab-chevron {
+  transform: rotate(180deg);
+}
+
+.game-fab-popover {
+  width: min(280px, calc(100vw - 48px));
+  max-height: min(320px, 52dvh);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.2);
+  transform-origin: bottom right;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.game-fab-popover::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.game-fab-popover.collapsed {
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.game-fab-popover-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.game-fab-popover-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #0f172a;
+}
+
+.game-fab-popover-hint {
+  font-size: 0.7rem;
+  color: #64748b;
 }
 
 .game-pills-container {

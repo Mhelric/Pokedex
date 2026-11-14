@@ -27,6 +27,7 @@ import {
   renderFavoritesGrid,
   getFilteredMoves,
   getPokemonFlavorText,
+  getShortGameLabel,
   renderError,
   renderMoveTableRows,
 } from "./ui.js";
@@ -70,6 +71,7 @@ const settingsCloseBtn = document.getElementById("settings-close-btn");
 // --- Pokémon Detail Modal ---
 const modalOverlay = document.getElementById("pokemon-modal");
 const modalContent = document.getElementById("modal-content");
+const modalFloatingGame = document.getElementById("modal-floating-game");
 const modalCloseBtn = document.getElementById("modal-close-btn");
 
 // --- Team Builder Modal ---
@@ -759,6 +761,9 @@ async function openPokemonModal(identifier) {
   const thisRequestToken = ++modalRequestToken;
   currentMoveCategory = "level-up";
 
+  if (modalFloatingGame) {
+    modalFloatingGame.classList.add("hidden");
+  }
   modalContent.innerHTML = `<div class="modal-loading-state"><p>Loading complete Pokédex data...</p></div>`;
   modalOverlay.classList.remove("hidden");
 
@@ -776,6 +781,9 @@ async function openPokemonModal(identifier) {
   } catch (err) {
     if (err.name === "AbortError") return;
     if (thisRequestToken === modalRequestToken && !modalOverlay.classList.contains("hidden")) {
+      if (modalFloatingGame) {
+        modalFloatingGame.classList.add("hidden");
+      }
       renderError(`Could not load Pokémon details: ${err.message}`, modalContent);
     }
   }
@@ -1209,9 +1217,73 @@ if (gridContainer) {
   });
 }
 
+function closeGameFabPopover() {
+  const popover = modalFloatingGame?.querySelector("#game-fab-popover");
+  const fabBtn = modalFloatingGame?.querySelector("#game-fab-btn");
+  if (popover) popover.classList.add("collapsed");
+  if (fabBtn) {
+    fabBtn.classList.remove("active");
+    fabBtn.setAttribute("aria-expanded", "false");
+  }
+}
+
+function closePokemonModal() {
+  closeGameFabPopover();
+  stopPokedexAudio();
+  if (modalContent) modalContent.scrollTop = 0;
+  if (modalFloatingGame) modalFloatingGame.classList.add("hidden");
+  if (modalOverlay) modalOverlay.classList.add("hidden");
+}
+
+if (modalFloatingGame) {
+  modalFloatingGame.addEventListener("click", (e) => {
+    // Toggle floating Game / Generation popover
+    const fabBtn = e.target.closest("#game-fab-btn");
+    if (fabBtn) {
+      e.stopPropagation();
+      const popover = modalFloatingGame.querySelector("#game-fab-popover");
+      if (popover) {
+        const willOpen = popover.classList.contains("collapsed");
+        popover.classList.toggle("collapsed");
+        fabBtn.classList.toggle("active", willOpen);
+        fabBtn.setAttribute("aria-expanded", willOpen.toString());
+      }
+      return;
+    }
+
+    // Select a Game Version pill
+    const gamePill = e.target.closest(".game-pill-btn");
+    if (gamePill) {
+      e.stopPropagation();
+      modalFloatingGame.querySelectorAll(".game-pill-btn").forEach((p) => p.classList.remove("active"));
+      gamePill.classList.add("active");
+
+      currentModalGame = gamePill.dataset.game;
+      const fabLabel = modalFloatingGame.querySelector("#game-fab-label");
+      if (fabLabel) {
+        fabLabel.textContent = getShortGameLabel(currentModalGame);
+      }
+
+      closeGameFabPopover();
+
+      if (currentActivePokemon) {
+        const newFlavorText = getPokemonFlavorText(currentActivePokemon, currentModalGame);
+        const flavorElem = document.getElementById("modal-flavor-text");
+        if (flavorElem) {
+          flavorElem.textContent = `"${newFlavorText}"`;
+        }
+
+        updateMovepoolTable();
+        speakPokemonEntry(currentActivePokemon, newFlavorText);
+      }
+    }
+  });
+}
+
 // --- Detail Modal Interactive Delegations ---
 if (modalContent) {
   modalContent.addEventListener("click", (e) => {
+    closeGameFabPopover();
     // 1. Direct Artwork Click Shiny Toggle & Sparkle Burst
     const primaryImg = e.target.closest("#modal-primary-img");
     if (primaryImg) {
@@ -1296,51 +1368,6 @@ if (modalContent) {
         }
       }
       updateTeamUI();
-      return;
-    }
-
-    // 5. Game / Gen Selector Accordion
-    const gameToggleBtn = e.target.closest("#game-selector-toggle");
-    if (gameToggleBtn) {
-      const drawer = modalContent.querySelector("#game-drawer");
-      const targetSection = modalContent.querySelector("#game-selector-section");
-
-      if (drawer) {
-        const willOpen = drawer.classList.contains("collapsed");
-        drawer.classList.toggle("collapsed");
-        gameToggleBtn.classList.toggle("active", willOpen);
-        gameToggleBtn.setAttribute("aria-expanded", willOpen.toString());
-
-        if (willOpen && targetSection) {
-          setTimeout(() => {
-            targetSection.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }, 80);
-        }
-      }
-      return;
-    }
-
-    // 6. Game Version Pill Selection
-    const gamePill = e.target.closest(".game-pill-btn");
-    if (gamePill) {
-      modalContent.querySelectorAll(".game-pill-btn").forEach((p) => p.classList.remove("active"));
-      gamePill.classList.add("active");
-
-      currentModalGame = gamePill.dataset.game;
-
-      if (currentActivePokemon) {
-        const newFlavorText = getPokemonFlavorText(currentActivePokemon, currentModalGame);
-        const flavorElem = document.getElementById("modal-flavor-text");
-        if (flavorElem) {
-          flavorElem.textContent = `"${newFlavorText}"`;
-        }
-
-        updateMovepoolTable();
-        speakPokemonEntry(currentActivePokemon, newFlavorText);
-      }
       return;
     }
 
@@ -1648,18 +1675,12 @@ if (imageUploadInput) {
 
 // --- General Modal Closure Handlers ---
 if (modalCloseBtn) {
-  modalCloseBtn.addEventListener("click", () => {
-    stopPokedexAudio();
-    if (modalContent) modalContent.scrollTop = 0;
-    modalOverlay.classList.add("hidden");
-  });
+  modalCloseBtn.addEventListener("click", closePokemonModal);
 }
 if (modalOverlay) {
   modalOverlay.addEventListener("click", (e) => {
     if (e.target === modalOverlay) {
-      stopPokedexAudio();
-      if (modalContent) modalContent.scrollTop = 0;
-      modalOverlay.classList.add("hidden");
+      closePokemonModal();
     }
   });
 }
@@ -1825,11 +1846,14 @@ window.addEventListener("keydown", (e) => {
       return;
     }
 
-    // Pokémon Detail Modal
+    // Pokémon Detail Modal (dismiss open Game/Gen popover first, then modal)
     if (modalOverlay && !modalOverlay.classList.contains("hidden")) {
-      stopPokedexAudio();
-      if (modalContent) modalContent.scrollTop = 0;
-      modalOverlay.classList.add("hidden");
+      const popover = modalFloatingGame?.querySelector("#game-fab-popover");
+      if (popover && !popover.classList.contains("collapsed")) {
+        closeGameFabPopover();
+        return;
+      }
+      closePokemonModal();
       return;
     }
 

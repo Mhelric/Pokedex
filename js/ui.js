@@ -64,6 +64,12 @@ export const GAME_VERSIONS = [
   },
 ];
 
+export function getShortGameLabel(selectedVersion) {
+  const matched = GAME_VERSIONS.find((g) => g.value === selectedVersion);
+  const match = matched?.label.match(/\((Gen \d+)\)/i);
+  return match ? match[1] : "Gen 9";
+}
+
 function getTeamSynergy(teamList) {
   const weaknessCounts = {};
   const resistanceCounts = {};
@@ -783,24 +789,6 @@ export function renderPokemonModal(pokemon, containerElement, selectedGame = "sc
         </div>
       </section>
 
-      <section class="detail-section game-selector-bottom-card" id="game-selector-section">
-        <button type="button" class="game-selector-header" id="game-selector-toggle" aria-expanded="false">
-          <div class="game-selector-titles">
-            <div class="game-selector-title-row">
-              <h4 class="section-title">Game / Generation Setting</h4>
-              <span class="game-selector-chevron"><i class="fa-solid fa-chevron-down"></i></span>
-            </div>
-            <span class="game-selector-hint">Updates entry text, abilities & generation movepools</span>
-          </div>
-        </button>
-        <div class="game-drawer collapsed" id="game-drawer">
-          <div class="game-drawer-inner">
-            <div class="game-pills-container" id="modal-game-pills">
-              ${versionButtonsHtml}
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
 
     <!-- Pinned Bottom Action Bar -->
@@ -836,6 +824,33 @@ export function renderPokemonModal(pokemon, containerElement, selectedGame = "sc
       </button>
     </div>
   `;
+
+  const floatingContainer = containerElement.parentElement?.querySelector("#modal-floating-game");
+  if (floatingContainer) {
+    floatingContainer.innerHTML = `
+      <div class="game-fab-popover collapsed" id="game-fab-popover" role="menu" aria-label="Select Game or Generation">
+        <div class="game-fab-popover-header">
+          <span class="game-fab-popover-title">Game / Generation</span>
+          <span class="game-fab-popover-hint">Updates entry text, abilities &amp; movepools</span>
+        </div>
+        <div class="game-pills-container" id="modal-game-pills">
+          ${versionButtonsHtml}
+        </div>
+      </div>
+      <button
+        type="button"
+        id="game-fab-btn"
+        class="game-fab-btn"
+        aria-expanded="false"
+        aria-controls="game-fab-popover"
+        title="Change Game / Generation">
+        <i class="fa-solid fa-gamepad" aria-hidden="true"></i>
+        <span id="game-fab-label">${getShortGameLabel(selectedGame)}</span>
+        <i class="fa-solid fa-chevron-up game-fab-chevron" aria-hidden="true"></i>
+      </button>
+    `;
+    floatingContainer.classList.remove("hidden");
+  }
 
   const cryBtn = containerElement.querySelector("#modal-play-cry");
   if (cryBtn && pokemon.cry) {

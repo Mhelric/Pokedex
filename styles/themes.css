@@ -398,19 +398,29 @@ body,
   border: 1px solid var(--dark-border) !important;
 }
 
-[data-theme="classic-dark"] #game-selector-toggle,
-[data-theme="classic-dark"] .game-selector-header {
-  background: var(--dark-surface-elevated) !important;
-  border: 1px solid var(--dark-border) !important;
-  color: var(--dark-text) !important;
-  outline: none !important;
-  box-shadow: none !important;
+[data-theme="classic-dark"] .game-fab-btn {
+  background: #0284c7 !important;
+  border-color: #38bdf8 !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.3) !important;
 }
 
-[data-theme="classic-dark"] .game-selector-chevron {
-  background: var(--dark-surface-soft) !important;
-  color: var(--dark-text) !important;
+[data-theme="classic-dark"] .game-fab-popover {
+  background: var(--dark-surface) !important;
   border: 1px solid var(--dark-border) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="classic-dark"] .game-fab-popover-header {
+  border-bottom-color: var(--dark-border) !important;
+}
+
+[data-theme="classic-dark"] .game-fab-popover-title {
+  color: var(--dark-text) !important;
+}
+
+[data-theme="classic-dark"] .game-fab-popover-hint {
+  color: var(--dark-text-muted) !important;
 }
 
 [data-theme="classic-dark"] .game-pill-btn {
@@ -1044,33 +1054,31 @@ body,
   color: var(--gb-lightest) !important;
 }
 
-[data-theme="retro-gb"] .game-selector-bottom-card {
+[data-theme="retro-gb"] .game-fab-btn {
+  background: var(--gb-darkest) !important;
   border: 2px solid var(--gb-darkest) !important;
-  background: var(--gb-light) !important;
-}
-
-[data-theme="retro-gb"] .game-selector-header {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  color: var(--gb-darkest) !important;
-  padding: 10px 12px !important;
-}
-
-[data-theme="retro-gb"] .game-selector-header:focus,
-[data-theme="retro-gb"] .game-selector-header:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-[data-theme="retro-gb"] .game-selector-hint {
-  color: var(--gb-dark) !important;
-}
-
-[data-theme="retro-gb"] .game-selector-chevron {
-  background: var(--gb-dark) !important;
   color: var(--gb-lightest) !important;
-  border: 1px solid var(--gb-darkest) !important;
+  border-radius: 6px !important;
+  box-shadow: 3px 3px 0 var(--gb-dark) !important;
+}
+
+[data-theme="retro-gb"] .game-fab-popover {
+  background: var(--gb-lightest) !important;
+  border: 3px solid var(--gb-darkest) !important;
+  border-radius: 6px !important;
+  box-shadow: 4px 4px 0 var(--gb-dark) !important;
+}
+
+[data-theme="retro-gb"] .game-fab-popover-header {
+  border-bottom: 2px solid var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .game-fab-popover-title {
+  color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .game-fab-popover-hint {
+  color: var(--gb-dark) !important;
 }
 
 [data-theme="retro-gb"] .game-pill-btn {
@@ -2142,10 +2150,29 @@ body[data-theme="bloom"] {
   border-bottom: 1px solid var(--bloom-border-subtle) !important;
 }
 
-[data-theme="bloom"] .game-selector-header {
-  background: #ffffff !important;
-  border: 1px solid var(--bloom-border) !important;
+[data-theme="bloom"] .game-fab-btn {
+  background: var(--bloom-accent) !important;
+  border-color: var(--bloom-accent-deep) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px var(--bloom-glow) !important;
+}
+
+[data-theme="bloom"] .game-fab-popover {
+  background: var(--bloom-surface) !important;
+  border: 1.5px solid var(--bloom-border) !important;
+  box-shadow: 0 12px 32px rgba(244, 114, 182, 0.22) !important;
+}
+
+[data-theme="bloom"] .game-fab-popover-header {
+  border-bottom-color: var(--bloom-border) !important;
+}
+
+[data-theme="bloom"] .game-fab-popover-title {
   color: var(--bloom-text) !important;
+}
+
+[data-theme="bloom"] .game-fab-popover-hint {
+  color: var(--bloom-text-muted) !important;
 }
 
 [data-theme="bloom"] .game-pill-btn {
@@ -2420,23 +2447,7 @@ body[data-theme="bloom"] {
    BLOOM THEME HOTFIXES (OUTLINES, SHADOWS, DRAWER, FILTER & PROGRESS BAR)
    ========================================================================== */
 
-/* 1. Remove box outline on Game / Gen Settings */
-[data-theme="bloom"] #game-selector-section,
-[data-theme="bloom"] .game-selector-bottom-card,
-[data-theme="bloom"] #game-selector-toggle,
-[data-theme="bloom"] .game-selector-header {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-[data-theme="bloom"] .game-selector-header:focus,
-[data-theme="bloom"] .game-selector-header:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* 2. Remove the dark left & bottom inset shadows on the Caught List stage */
+/* 1. Remove dark left & bottom inset shadows on the Caught List stage */
 [data-theme="bloom"] .pc-box-stage,
 [data-theme="bloom"] .pc-storage-grid-container,
 [data-theme="bloom"] .pc-storage-wallpaper {
