@@ -149,9 +149,6 @@ const navTeamBtn = document.getElementById("nav-team-btn");
 const navScanBtn = document.getElementById("nav-scan-btn");
 const navGameBtn = document.getElementById("nav-game-btn");
 
-// --- UI Theme ---
-const themeSelector = document.getElementById("theme-selector");
-
 // Unified Filter & Search State
 const filterState = {
   query: "",
@@ -1058,11 +1055,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const savedTheme = localStorage.getItem("app_theme") || "default";
   applyTheme(savedTheme);
 
-  if (themeSelector) {
-    themeSelector.addEventListener("change", (e) => {
+  document.querySelectorAll('input[name="app-ui-theme"]').forEach((radio) => {
+    radio.addEventListener("change", (e) => {
       applyTheme(e.target.value);
     });
-  }
+  });
 
   await applyCombinedFilters();
   triggerPokeballOpening();
@@ -1735,17 +1732,18 @@ window.addEventListener("appinstalled", () => {
 });
 
 function applyTheme(themeName) {
-  if (!themeName || themeName === "default") {
+  const activeTheme = themeName || "default";
+  if (activeTheme === "default") {
     document.documentElement.removeAttribute("data-theme");
     localStorage.setItem("app_theme", "default");
   } else {
-    document.documentElement.setAttribute("data-theme", themeName);
-    localStorage.setItem("app_theme", themeName);
+    document.documentElement.setAttribute("data-theme", activeTheme);
+    localStorage.setItem("app_theme", activeTheme);
   }
 
-  if (themeSelector) {
-    themeSelector.value = themeName || "default";
-  }
+  document.querySelectorAll('input[name="app-ui-theme"]').forEach((radio) => {
+    radio.checked = radio.value === activeTheme;
+  });
 }
 
 // ==========================================

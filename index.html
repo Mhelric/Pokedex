@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Pokédex</title>
-    <link rel="stylesheet" href="styles/main.css?v=7" />
-    <link rel="stylesheet" href="styles/retro-ui.css?v=7" />
-    <link rel="stylesheet" href="styles/themes.css?v=7" />
-    <link rel="stylesheet" href="styles/animations.css?v=7" />
+    <link rel="stylesheet" href="styles/main.css?v=8" />
+    <link rel="stylesheet" href="styles/retro-ui.css?v=8" />
+    <link rel="stylesheet" href="styles/themes.css?v=8" />
+    <link rel="stylesheet" href="styles/animations.css?v=8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,6 +64,52 @@
                     <h2 id="settings-modal-title">Settings</h2>
                 </div>
 
+                <!-- Credits & Legal Disclaimer -->
+                <div class="settings-section settings-accordion settings-legal-section">
+                    <button type="button" class="settings-accordion-trigger" aria-expanded="false" aria-controls="settings-legal-panel">
+                        <span class="settings-label">Credits &amp; Legal Disclaimer</span>
+                        <i class="fa-solid fa-chevron-down settings-accordion-arrow" aria-hidden="true"></i>
+                    </button>
+                    <div id="settings-legal-panel" class="settings-accordion-panel">
+                        <div class="settings-accordion-inner">
+                            <div class="settings-legal-card">
+                        <p class="legal-notice">
+                            <strong>Unofficial Fan Project:</strong> This application is a free, non-commercial, educational Pokédex built by fans. It is <strong>not affiliated with, endorsed, sponsored, or approved by</strong> Nintendo, Creatures Inc., GAME FREAK inc., or The Pokémon Company.
+                        </p>
+                        <p class="legal-trademarks">
+                            Pokémon and all related character names, sprites, artwork, and audio cries are trademarks and copyrights of &copy; Nintendo / Creatures Inc. / GAME FREAK inc. All rights belong to their respective owners; no infringement is intended.
+                        </p>
+                        <div class="legal-credits-list">
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Created By</span>
+                                <span class="credit-value">
+                                    <a href="https://github.com/Mhelric" target="_blank" rel="noopener noreferrer">Mhelric</a>
+                                </span>
+                            </div>
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Data &amp; Sprites</span>
+                                <span class="credit-value">
+                                    <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a> &amp; <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener noreferrer">PokeAPI Sprites</a>
+                                </span>
+                            </div>
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Icons &amp; Fonts</span>
+                                <span class="credit-value">Font Awesome &amp; Plus Jakarta Sans</span>
+                            </div>
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Visual Scanner</span>
+                                <span class="credit-value">Google Lens via SerpApi</span>
+                            </div>
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Source License</span>
+                                <span class="credit-value">Open-Source Educational (MIT)</span>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Application Install Section -->
                 <div class="settings-section" id="pwa-install-section" style="display: none;">
                     <span class="settings-label">Application</span>
@@ -108,59 +154,23 @@
                     </button>
                     <div id="settings-theme-panel" class="settings-accordion-panel">
                         <div class="settings-accordion-inner">
-                            <div class="ui-theme-placeholder">
-                                <select id="theme-selector" class="settings-select">
-                                    <option value="default">Classic Pokédex (Default)</option>
-                                    <option value="classic-dark">Classic Dark</option>
-                                    <option value="retro-gb">Game Boy Retro</option>
-                                    <option value="bloom">Bloom (Floral Pastel)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Credits & Legal Disclaimer -->
-                <div class="settings-section settings-accordion settings-legal-section">
-                    <button type="button" class="settings-accordion-trigger" aria-expanded="false" aria-controls="settings-legal-panel">
-                        <span class="settings-label">Credits &amp; Legal Disclaimer</span>
-                        <i class="fa-solid fa-chevron-down settings-accordion-arrow" aria-hidden="true"></i>
-                    </button>
-                    <div id="settings-legal-panel" class="settings-accordion-panel">
-                        <div class="settings-accordion-inner">
-                            <div class="settings-legal-card">
-                        <p class="legal-notice">
-                            <strong>Unofficial Fan Project:</strong> This application is a free, non-commercial, educational Pokédex built by fans. It is <strong>not affiliated with, endorsed, sponsored, or approved by</strong> Nintendo, Creatures Inc., GAME FREAK inc., or The Pokémon Company.
-                        </p>
-                        <p class="legal-trademarks">
-                            Pokémon and all related character names, sprites, artwork, and audio cries are trademarks and copyrights of &copy; Nintendo / Creatures Inc. / GAME FREAK inc. All rights belong to their respective owners; no infringement is intended.
-                        </p>
-                        <div class="legal-credits-list">
-                            <div class="legal-credit-row">
-                                <span class="credit-role">Created By</span>
-                                <span class="credit-value">
-                                    <a href="https://github.com/Mhelric" target="_blank" rel="noopener noreferrer">Mhelric</a>
-                                </span>
-                            </div>
-                            <div class="legal-credit-row">
-                                <span class="credit-role">Data &amp; Sprites</span>
-                                <span class="credit-value">
-                                    <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a> &amp; <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener noreferrer">PokeAPI Sprites</a>
-                                </span>
-                            </div>
-                            <div class="legal-credit-row">
-                                <span class="credit-role">Icons &amp; Fonts</span>
-                                <span class="credit-value">Font Awesome &amp; Plus Jakarta Sans</span>
-                            </div>
-                            <div class="legal-credit-row">
-                                <span class="credit-role">Visual Scanner</span>
-                                <span class="credit-value">Google Lens via SerpApi</span>
-                            </div>
-                            <div class="legal-credit-row">
-                                <span class="credit-role">Source License</span>
-                                <span class="credit-value">Open-Source Educational (MIT)</span>
-                            </div>
-                        </div>
+                            <div class="settings-radio-group" id="theme-radio-group">
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="app-ui-theme" value="default" id="theme-opt-default">
+                                    <span>Classic Pokédex (Default)</span>
+                                </label>
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="app-ui-theme" value="classic-dark" id="theme-opt-classic-dark">
+                                    <span>Classic Dark</span>
+                                </label>
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="app-ui-theme" value="retro-gb" id="theme-opt-retro-gb">
+                                    <span>Game Boy Retro</span>
+                                </label>
+                                <label class="settings-radio-pill">
+                                    <input type="radio" name="app-ui-theme" value="bloom" id="theme-opt-bloom">
+                                    <span>Bloom (Floral Pastel)</span>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -527,7 +537,7 @@
         </div>
     </nav>
 
-    <script type="module" src="js/app.js?v=7"></script>
+    <script type="module" src="js/app.js?v=8"></script>
     <!-- Before </body> -->
     <script>
     if ('serviceWorker' in navigator) {

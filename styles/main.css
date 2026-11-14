@@ -259,9 +259,12 @@ body {
   margin-top: 10px;
 }
 
+.settings-accordion:last-child {
+  margin-bottom: 0;
+}
+
 .settings-legal-section {
   margin-top: 0;
-  margin-bottom: 0;
 }
 
 .settings-legal-card {
