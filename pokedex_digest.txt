@@ -242,6 +242,18 @@ The application persists user settings and rosters across browser sessions using
 
 ---
 
+## ⚖️ Disclaimer & Credits
+
+This application is an **unofficial, non-commercial, educational fan project** and is **not affiliated with, endorsed, sponsored, or approved by** Nintendo, Creatures Inc., GAME FREAK inc., or The Pokémon Company.
+
+Pokémon and all related character names, sprites, artwork, and audio cries are trademarks and copyrights of their respective owners. No copyright infringement is intended.
+
+* **Pokémon Data & Sprites:** [PokéAPI](https://pokeapi.co/) & [PokeAPI Sprites](https://github.com/PokeAPI/sprites)
+* **Icons & Typography:** Font Awesome & Plus Jakarta Sans (Google Fonts)
+* **Visual Identification (Optional Scanner):** Google Lens via SerpApi
+
+---
+
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
@@ -272,10 +284,10 @@ File: index.html
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Pokédex</title>
-    <link rel="stylesheet" href="styles/main.css?v=4" />
-    <link rel="stylesheet" href="styles/retro-ui.css?v=4" />
-    <link rel="stylesheet" href="styles/themes.css?v=4" />
-    <link rel="stylesheet" href="styles/animations.css?v=4" />
+    <link rel="stylesheet" href="styles/main.css?v=5" />
+    <link rel="stylesheet" href="styles/retro-ui.css?v=5" />
+    <link rel="stylesheet" href="styles/themes.css?v=5" />
+    <link rel="stylesheet" href="styles/animations.css?v=5" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -371,6 +383,39 @@ File: index.html
                             <option value="retro-gb">Game Boy Retro</option>
                             <option value="bloom">Bloom (Floral Pastel)</option>
                         </select>
+                    </div>
+                </div>
+
+                <!-- Credits & Legal Disclaimer -->
+                <div class="settings-section settings-legal-section">
+                    <span class="settings-label">Credits &amp; Legal Disclaimer</span>
+                    <div class="settings-legal-card">
+                        <p class="legal-notice">
+                            <strong>Unofficial Fan Project:</strong> This application is a free, non-commercial, educational Pokédex built by fans. It is <strong>not affiliated with, endorsed, sponsored, or approved by</strong> Nintendo, Creatures Inc., GAME FREAK inc., or The Pokémon Company.
+                        </p>
+                        <p class="legal-trademarks">
+                            Pokémon and all related character names, sprites, artwork, and audio cries are trademarks and copyrights of &copy; Nintendo / Creatures Inc. / GAME FREAK inc. All rights belong to their respective owners; no infringement is intended.
+                        </p>
+                        <div class="legal-credits-list">
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Data &amp; Sprites</span>
+                                <span class="credit-value">
+                                    <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a> &amp; <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener noreferrer">PokeAPI Sprites</a>
+                                </span>
+                            </div>
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Icons &amp; Fonts</span>
+                                <span class="credit-value">Font Awesome &amp; Plus Jakarta Sans</span>
+                            </div>
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Visual Scanner</span>
+                                <span class="credit-value">Google Lens via SerpApi</span>
+                            </div>
+                            <div class="legal-credit-row">
+                                <span class="credit-role">Source License</span>
+                                <span class="credit-value">Open-Source Educational (MIT)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -735,7 +780,7 @@ File: index.html
         </div>
     </nav>
 
-    <script type="module" src="js/app.js?v=4"></script>
+    <script type="module" src="js/app.js?v=5"></script>
     <!-- Before </body> -->
     <script>
     if ('serviceWorker' in navigator) {
@@ -781,7 +826,7 @@ File: manifest.json
 File: sw.js
 ================================================
 // sw.js
-const SHELL_CACHE = "pokedex-shell-v11";
+const SHELL_CACHE = "pokedex-shell-v12";
 const API_CACHE = "pokedex-api-v1";
 const MAX_API_ENTRIES = 120;
 
@@ -18479,6 +18524,78 @@ body {
   margin: 4px 0 0 0;
 }
 
+.settings-legal-section {
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.settings-legal-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.settings-legal-card p {
+  margin: 0;
+}
+
+.settings-legal-card strong {
+  color: #1e293b;
+}
+
+.legal-trademarks {
+  color: #64748b;
+  font-size: 0.72rem;
+}
+
+.legal-credits-list {
+  margin-top: 2px;
+  padding-top: 8px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.legal-credit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 0.72rem;
+}
+
+.credit-role {
+  color: #64748b;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.credit-value {
+  color: #1e293b;
+  font-weight: 600;
+  text-align: right;
+  margin-left: auto;
+}
+
+.settings-legal-card a {
+  color: #ef5350;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.settings-legal-card a:hover {
+  text-decoration: underline;
+}
+
 /* Legacy toggle fallback support */
 .header-toggle-container {
   display: flex;
@@ -22544,6 +22661,30 @@ body,
   color: var(--dark-text);
 }
 
+[data-theme="classic-dark"] .settings-legal-card {
+  background: var(--dark-surface-elevated);
+  border-color: var(--dark-border);
+  color: var(--dark-text-muted);
+}
+
+[data-theme="classic-dark"] .settings-legal-card strong,
+[data-theme="classic-dark"] .credit-value {
+  color: var(--dark-text);
+}
+
+[data-theme="classic-dark"] .legal-trademarks,
+[data-theme="classic-dark"] .credit-role {
+  color: var(--dark-text-muted);
+}
+
+[data-theme="classic-dark"] .legal-credits-list {
+  border-top-color: var(--dark-border);
+}
+
+[data-theme="classic-dark"] .settings-legal-card a {
+  color: #38bdf8;
+}
+
 [data-theme="classic-dark"] .filter-drawer,
 [data-theme="classic-dark"] .filter-drawer .drawer-inner {
   background: #111827 !important;
@@ -23123,6 +23264,29 @@ body,
 [data-theme="retro-gb"] .settings-action-text strong,
 [data-theme="retro-gb"] .settings-action-text span {
   color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .settings-legal-card {
+  background: var(--gb-light) !important;
+  border: 2px solid var(--gb-darkest) !important;
+  border-radius: 6px !important;
+  color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .settings-legal-card strong,
+[data-theme="retro-gb"] .legal-trademarks,
+[data-theme="retro-gb"] .credit-role,
+[data-theme="retro-gb"] .credit-value,
+[data-theme="retro-gb"] .settings-legal-card a {
+  color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .legal-credits-list {
+  border-top: 2px dashed var(--gb-dark) !important;
+}
+
+[data-theme="retro-gb"] .settings-legal-card a {
+  text-decoration: underline;
 }
 
 /* Camera Scanner Modal */
@@ -24191,6 +24355,31 @@ body[data-theme="bloom"] {
 [data-theme="bloom"] .settings-action-btn:hover {
   border-color: var(--bloom-accent) !important;
   background: #ffffff !important;
+}
+
+[data-theme="bloom"] .settings-legal-card {
+  background: var(--bloom-surface-soft) !important;
+  border: 1.5px solid var(--bloom-border) !important;
+  border-radius: 12px !important;
+  color: var(--bloom-text) !important;
+}
+
+[data-theme="bloom"] .settings-legal-card strong,
+[data-theme="bloom"] .credit-value {
+  color: var(--bloom-text) !important;
+}
+
+[data-theme="bloom"] .legal-trademarks,
+[data-theme="bloom"] .credit-role {
+  color: var(--bloom-text-muted) !important;
+}
+
+[data-theme="bloom"] .legal-credits-list {
+  border-top-color: var(--bloom-border) !important;
+}
+
+[data-theme="bloom"] .settings-legal-card a {
+  color: var(--bloom-accent-deep) !important;
 }
 
 /* Mini-Game Modal */

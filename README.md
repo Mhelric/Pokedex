@@ -190,6 +190,18 @@ The application persists user settings and rosters across browser sessions using
 
 ---
 
+## ⚖️ Disclaimer & Credits
+
+This application is an **unofficial, non-commercial, educational fan project** and is **not affiliated with, endorsed, sponsored, or approved by** Nintendo, Creatures Inc., GAME FREAK inc., or The Pokémon Company.
+
+Pokémon and all related character names, sprites, artwork, and audio cries are trademarks and copyrights of their respective owners. No copyright infringement is intended.
+
+* **Pokémon Data & Sprites:** [PokéAPI](https://pokeapi.co/) & [PokeAPI Sprites](https://github.com/PokeAPI/sprites)
+* **Icons & Typography:** Font Awesome & Plus Jakarta Sans (Google Fonts)
+* **Visual Identification (Optional Scanner):** Google Lens via SerpApi
+
+---
+
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
