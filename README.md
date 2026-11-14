@@ -196,6 +196,7 @@ This application is an **unofficial, non-commercial, educational fan project** a
 
 Pokémon and all related character names, sprites, artwork, and audio cries are trademarks and copyrights of their respective owners. No copyright infringement is intended.
 
+* **Created By:** [Mhelric](https://github.com/Mhelric)
 * **Pokémon Data & Sprites:** [PokéAPI](https://pokeapi.co/) & [PokeAPI Sprites](https://github.com/PokeAPI/sprites)
 * **Icons & Typography:** Font Awesome & Plus Jakarta Sans (Google Fonts)
 * **Visual Identification (Optional Scanner):** Google Lens via SerpApi
