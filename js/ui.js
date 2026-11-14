@@ -829,10 +829,6 @@ export function renderPokemonModal(pokemon, containerElement, selectedGame = "sc
   if (floatingContainer) {
     floatingContainer.innerHTML = `
       <div class="game-fab-popover collapsed" id="game-fab-popover" role="menu" aria-label="Select Game or Generation">
-        <div class="game-fab-popover-header">
-          <span class="game-fab-popover-title">Game / Generation</span>
-          <span class="game-fab-popover-hint">Updates entry text, abilities &amp; movepools</span>
-        </div>
         <div class="game-pills-container" id="modal-game-pills">
           ${versionButtonsHtml}
         </div>

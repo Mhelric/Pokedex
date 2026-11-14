@@ -408,19 +408,7 @@ body,
 [data-theme="classic-dark"] .game-fab-popover {
   background: var(--dark-surface) !important;
   border: 1px solid var(--dark-border) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
-}
-
-[data-theme="classic-dark"] .game-fab-popover-header {
-  border-bottom-color: var(--dark-border) !important;
-}
-
-[data-theme="classic-dark"] .game-fab-popover-title {
-  color: var(--dark-text) !important;
-}
-
-[data-theme="classic-dark"] .game-fab-popover-hint {
-  color: var(--dark-text-muted) !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5) !important;
 }
 
 [data-theme="classic-dark"] .game-pill-btn {
@@ -1067,18 +1055,6 @@ body,
   border: 3px solid var(--gb-darkest) !important;
   border-radius: 6px !important;
   box-shadow: 4px 4px 0 var(--gb-dark) !important;
-}
-
-[data-theme="retro-gb"] .game-fab-popover-header {
-  border-bottom: 2px solid var(--gb-darkest) !important;
-}
-
-[data-theme="retro-gb"] .game-fab-popover-title {
-  color: var(--gb-darkest) !important;
-}
-
-[data-theme="retro-gb"] .game-fab-popover-hint {
-  color: var(--gb-dark) !important;
 }
 
 [data-theme="retro-gb"] .game-pill-btn {
@@ -2160,26 +2136,14 @@ body[data-theme="bloom"] {
 [data-theme="bloom"] .game-fab-popover {
   background: var(--bloom-surface) !important;
   border: 1.5px solid var(--bloom-border) !important;
-  box-shadow: 0 12px 32px rgba(244, 114, 182, 0.22) !important;
-}
-
-[data-theme="bloom"] .game-fab-popover-header {
-  border-bottom-color: var(--bloom-border) !important;
-}
-
-[data-theme="bloom"] .game-fab-popover-title {
-  color: var(--bloom-text) !important;
-}
-
-[data-theme="bloom"] .game-fab-popover-hint {
-  color: var(--bloom-text-muted) !important;
+  box-shadow: 0 10px 26px rgba(244, 114, 182, 0.22) !important;
 }
 
 [data-theme="bloom"] .game-pill-btn {
   background: #ffffff !important;
   border: 1px solid var(--bloom-border) !important;
   color: var(--bloom-text-muted) !important;
-  border-radius: 10px !important;
+  border-radius: 8px !important;
 }
 
 [data-theme="bloom"] .game-pill-btn.active {

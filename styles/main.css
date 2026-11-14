@@ -2069,16 +2069,18 @@ body {
 }
 
 .game-fab-popover {
-  width: min(280px, calc(100vw - 48px));
-  max-height: min(320px, 52dvh);
+  width: max-content;
+  min-width: 184px;
+  max-width: min(230px, calc(100vw - 44px));
+  max-height: min(290px, 50dvh);
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 12px;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.2);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
   transform-origin: bottom right;
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
   opacity: 1;
@@ -2098,49 +2100,28 @@ body {
   pointer-events: none;
 }
 
-.game-fab-popover-header {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.game-fab-popover-title {
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: #0f172a;
-}
-
-.game-fab-popover-hint {
-  font-size: 0.7rem;
-  color: #64748b;
-}
-
 .game-pills-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  align-items: stretch;
+  gap: 4px;
   width: 100%;
 }
 
 .game-pill-btn {
   width: 100%;
-  max-width: 320px;
   text-align: center;
-  padding: 8px 16px;
+  padding: 5px 10px;
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  border-radius: 20px;
-  font-size: 0.82rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  white-space: nowrap;
   font-weight: 600;
   color: #475569;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
   font-family: inherit;
 }

@@ -285,10 +285,10 @@ File: index.html
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Pokédex</title>
-    <link rel="stylesheet" href="styles/main.css?v=10" />
-    <link rel="stylesheet" href="styles/retro-ui.css?v=10" />
-    <link rel="stylesheet" href="styles/themes.css?v=10" />
-    <link rel="stylesheet" href="styles/animations.css?v=10" />
+    <link rel="stylesheet" href="styles/main.css?v=11" />
+    <link rel="stylesheet" href="styles/retro-ui.css?v=11" />
+    <link rel="stylesheet" href="styles/themes.css?v=11" />
+    <link rel="stylesheet" href="styles/animations.css?v=11" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -822,7 +822,7 @@ File: index.html
         </div>
     </nav>
 
-    <script type="module" src="js/app.js?v=10"></script>
+    <script type="module" src="js/app.js?v=11"></script>
     <!-- Before </body> -->
     <script>
     if ('serviceWorker' in navigator) {
@@ -868,7 +868,7 @@ File: manifest.json
 File: sw.js
 ================================================
 // sw.js
-const SHELL_CACHE = "pokedex-shell-v17";
+const SHELL_CACHE = "pokedex-shell-v18";
 const API_CACHE = "pokedex-api-v1";
 const MAX_API_ENTRIES = 120;
 
@@ -17711,10 +17711,6 @@ export function renderPokemonModal(pokemon, containerElement, selectedGame = "sc
   if (floatingContainer) {
     floatingContainer.innerHTML = `
       <div class="game-fab-popover collapsed" id="game-fab-popover" role="menu" aria-label="Select Game or Generation">
-        <div class="game-fab-popover-header">
-          <span class="game-fab-popover-title">Game / Generation</span>
-          <span class="game-fab-popover-hint">Updates entry text, abilities &amp; movepools</span>
-        </div>
         <div class="game-pills-container" id="modal-game-pills">
           ${versionButtonsHtml}
         </div>
@@ -20513,16 +20509,18 @@ body {
 }
 
 .game-fab-popover {
-  width: min(280px, calc(100vw - 48px));
-  max-height: min(320px, 52dvh);
+  width: max-content;
+  min-width: 184px;
+  max-width: min(230px, calc(100vw - 44px));
+  max-height: min(290px, 50dvh);
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 12px;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.2);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
   transform-origin: bottom right;
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
   opacity: 1;
@@ -20542,49 +20540,28 @@ body {
   pointer-events: none;
 }
 
-.game-fab-popover-header {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.game-fab-popover-title {
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: #0f172a;
-}
-
-.game-fab-popover-hint {
-  font-size: 0.7rem;
-  color: #64748b;
-}
-
 .game-pills-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  align-items: stretch;
+  gap: 4px;
   width: 100%;
 }
 
 .game-pill-btn {
   width: 100%;
-  max-width: 320px;
   text-align: center;
-  padding: 8px 16px;
+  padding: 5px 10px;
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  border-radius: 20px;
-  font-size: 0.82rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  white-space: nowrap;
   font-weight: 600;
   color: #475569;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
   font-family: inherit;
 }
@@ -22764,19 +22741,7 @@ body,
 [data-theme="classic-dark"] .game-fab-popover {
   background: var(--dark-surface) !important;
   border: 1px solid var(--dark-border) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
-}
-
-[data-theme="classic-dark"] .game-fab-popover-header {
-  border-bottom-color: var(--dark-border) !important;
-}
-
-[data-theme="classic-dark"] .game-fab-popover-title {
-  color: var(--dark-text) !important;
-}
-
-[data-theme="classic-dark"] .game-fab-popover-hint {
-  color: var(--dark-text-muted) !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5) !important;
 }
 
 [data-theme="classic-dark"] .game-pill-btn {
@@ -23423,18 +23388,6 @@ body,
   border: 3px solid var(--gb-darkest) !important;
   border-radius: 6px !important;
   box-shadow: 4px 4px 0 var(--gb-dark) !important;
-}
-
-[data-theme="retro-gb"] .game-fab-popover-header {
-  border-bottom: 2px solid var(--gb-darkest) !important;
-}
-
-[data-theme="retro-gb"] .game-fab-popover-title {
-  color: var(--gb-darkest) !important;
-}
-
-[data-theme="retro-gb"] .game-fab-popover-hint {
-  color: var(--gb-dark) !important;
 }
 
 [data-theme="retro-gb"] .game-pill-btn {
@@ -24516,26 +24469,14 @@ body[data-theme="bloom"] {
 [data-theme="bloom"] .game-fab-popover {
   background: var(--bloom-surface) !important;
   border: 1.5px solid var(--bloom-border) !important;
-  box-shadow: 0 12px 32px rgba(244, 114, 182, 0.22) !important;
-}
-
-[data-theme="bloom"] .game-fab-popover-header {
-  border-bottom-color: var(--bloom-border) !important;
-}
-
-[data-theme="bloom"] .game-fab-popover-title {
-  color: var(--bloom-text) !important;
-}
-
-[data-theme="bloom"] .game-fab-popover-hint {
-  color: var(--bloom-text-muted) !important;
+  box-shadow: 0 10px 26px rgba(244, 114, 182, 0.22) !important;
 }
 
 [data-theme="bloom"] .game-pill-btn {
   background: #ffffff !important;
   border: 1px solid var(--bloom-border) !important;
   color: var(--bloom-text-muted) !important;
-  border-radius: 10px !important;
+  border-radius: 8px !important;
 }
 
 [data-theme="bloom"] .game-pill-btn.active {
