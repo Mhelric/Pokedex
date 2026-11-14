@@ -445,6 +445,10 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
+.search-box-wrapper.has-query input[type="text"] {
+  padding-right: 80px;
+}
+
 .search-box-wrapper input[type="text"]:focus {
   border-color: #ef5350;
   box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.15);
@@ -460,6 +464,40 @@ body {
   border-radius: 50%;
   animation: spinInput 0.7s linear infinite;
   pointer-events: none;
+}
+
+.search-box-wrapper.has-query .input-spinner {
+  right: 78px;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 45px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: #e2e8f0;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+
+.search-clear-btn:hover {
+  background: #cbd5e1;
+  color: #0f172a;
+}
+
+.search-clear-btn:active {
+  transform: scale(0.92);
+}
+
+.search-clear-btn.hidden {
+  display: none !important;
 }
 
 @keyframes spinInput {

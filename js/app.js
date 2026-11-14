@@ -55,6 +55,7 @@ import {
 
 // --- Search, Filter & Main Grid ---
 const searchInput = document.getElementById("search-input");
+const searchClearBtn = document.getElementById("search-clear-btn");
 const filterExpandBtn = document.getElementById("filter-expand-btn");
 const filterDrawer = document.getElementById("filter-drawer");
 const activeFilterIndicator = document.getElementById("active-filter-indicator");
@@ -1108,14 +1109,41 @@ if (gridContainer) {
 }
 
 // --- Live Search ---
+function syncSearchClearState() {
+  const hasValue = Boolean(searchInput && searchInput.value.length > 0);
+  if (searchClearBtn) {
+    searchClearBtn.classList.toggle("hidden", !hasValue);
+  }
+  const searchWrapper = searchInput?.closest(".search-box-wrapper");
+  if (searchWrapper) {
+    searchWrapper.classList.toggle("has-query", hasValue);
+  }
+}
+
 if (searchInput) {
-  searchInput.addEventListener(
-    "input",
-    debounce((e) => {
-      filterState.query = e.target.value;
-      applyCombinedFilters();
-    }, 350)
-  );
+  const debouncedSearch = debounce((value) => {
+    filterState.query = value;
+    applyCombinedFilters();
+  }, 350);
+
+  syncSearchClearState();
+
+  searchInput.addEventListener("input", (e) => {
+    syncSearchClearState();
+    debouncedSearch(e.target.value);
+  });
+}
+
+if (searchClearBtn && searchInput) {
+  searchClearBtn.addEventListener("click", () => {
+    clearTimeout(searchDebounceTimer);
+    setSearchLoading(false);
+    searchInput.value = "";
+    filterState.query = "";
+    syncSearchClearState();
+    applyCombinedFilters();
+    searchInput.focus();
+  });
 }
 
 // --- Main Grid Card Event Delegations ---

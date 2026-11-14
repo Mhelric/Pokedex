@@ -285,10 +285,10 @@ File: index.html
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Pokédex</title>
-    <link rel="stylesheet" href="styles/main.css?v=8" />
-    <link rel="stylesheet" href="styles/retro-ui.css?v=8" />
-    <link rel="stylesheet" href="styles/themes.css?v=8" />
-    <link rel="stylesheet" href="styles/animations.css?v=8" />
+    <link rel="stylesheet" href="styles/main.css?v=9" />
+    <link rel="stylesheet" href="styles/retro-ui.css?v=9" />
+    <link rel="stylesheet" href="styles/themes.css?v=9" />
+    <link rel="stylesheet" href="styles/animations.css?v=9" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -470,6 +470,9 @@ File: index.html
                     aria-label="Search Pokémon by name or ID" 
                     autocomplete="off" 
                 />
+                <button type="button" id="search-clear-btn" class="search-clear-btn hidden" aria-label="Clear search" title="Clear search">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
                 <button type="button" id="filter-expand-btn" class="filter-toggle-btn" aria-label="Toggle Filters" title="Filter Pokémon">
                     <i class="fa-solid fa-sliders"></i>
                     <span class="filter-badge hidden" id="active-filter-indicator"></span>
@@ -818,7 +821,7 @@ File: index.html
         </div>
     </nav>
 
-    <script type="module" src="js/app.js?v=8"></script>
+    <script type="module" src="js/app.js?v=9"></script>
     <!-- Before </body> -->
     <script>
     if ('serviceWorker' in navigator) {
@@ -864,7 +867,7 @@ File: manifest.json
 File: sw.js
 ================================================
 // sw.js
-const SHELL_CACHE = "pokedex-shell-v15";
+const SHELL_CACHE = "pokedex-shell-v16";
 const API_CACHE = "pokedex-api-v1";
 const MAX_API_ENTRIES = 120;
 
@@ -14258,6 +14261,7 @@ import {
 
 // --- Search, Filter & Main Grid ---
 const searchInput = document.getElementById("search-input");
+const searchClearBtn = document.getElementById("search-clear-btn");
 const filterExpandBtn = document.getElementById("filter-expand-btn");
 const filterDrawer = document.getElementById("filter-drawer");
 const activeFilterIndicator = document.getElementById("active-filter-indicator");
@@ -15311,14 +15315,41 @@ if (gridContainer) {
 }
 
 // --- Live Search ---
+function syncSearchClearState() {
+  const hasValue = Boolean(searchInput && searchInput.value.length > 0);
+  if (searchClearBtn) {
+    searchClearBtn.classList.toggle("hidden", !hasValue);
+  }
+  const searchWrapper = searchInput?.closest(".search-box-wrapper");
+  if (searchWrapper) {
+    searchWrapper.classList.toggle("has-query", hasValue);
+  }
+}
+
 if (searchInput) {
-  searchInput.addEventListener(
-    "input",
-    debounce((e) => {
-      filterState.query = e.target.value;
-      applyCombinedFilters();
-    }, 350)
-  );
+  const debouncedSearch = debounce((value) => {
+    filterState.query = value;
+    applyCombinedFilters();
+  }, 350);
+
+  syncSearchClearState();
+
+  searchInput.addEventListener("input", (e) => {
+    syncSearchClearState();
+    debouncedSearch(e.target.value);
+  });
+}
+
+if (searchClearBtn && searchInput) {
+  searchClearBtn.addEventListener("click", () => {
+    clearTimeout(searchDebounceTimer);
+    setSearchLoading(false);
+    searchInput.value = "";
+    filterState.query = "";
+    syncSearchClearState();
+    applyCombinedFilters();
+    searchInput.focus();
+  });
 }
 
 // --- Main Grid Card Event Delegations ---
@@ -18818,6 +18849,10 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
+.search-box-wrapper.has-query input[type="text"] {
+  padding-right: 80px;
+}
+
 .search-box-wrapper input[type="text"]:focus {
   border-color: #ef5350;
   box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.15);
@@ -18833,6 +18868,40 @@ body {
   border-radius: 50%;
   animation: spinInput 0.7s linear infinite;
   pointer-events: none;
+}
+
+.search-box-wrapper.has-query .input-spinner {
+  right: 78px;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 45px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: #e2e8f0;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+}
+
+.search-clear-btn:hover {
+  background: #cbd5e1;
+  color: #0f172a;
+}
+
+.search-clear-btn:active {
+  transform: scale(0.92);
+}
+
+.search-clear-btn.hidden {
+  display: none !important;
 }
 
 @keyframes spinInput {
@@ -22344,6 +22413,18 @@ body,
   outline: none !important;
 }
 
+[data-theme="classic-dark"] .search-clear-btn {
+  background: var(--dark-surface-elevated) !important;
+  color: var(--dark-text-muted) !important;
+  border: 1px solid var(--dark-border) !important;
+}
+
+[data-theme="classic-dark"] .search-clear-btn:hover {
+  background: rgba(56, 189, 248, 0.16) !important;
+  color: var(--dark-text) !important;
+  border-color: #38bdf8 !important;
+}
+
 [data-theme="classic-dark"] .filter-drawer {
   background: var(--dark-surface) !important;
   border: 1px solid var(--dark-border) !important;
@@ -22972,6 +23053,18 @@ body,
   border: 2px solid var(--gb-darkest) !important;
   color: var(--gb-darkest) !important;
   border-radius: 4px !important;
+}
+
+[data-theme="retro-gb"] .search-clear-btn {
+  background: var(--gb-light) !important;
+  border: 2px solid var(--gb-darkest) !important;
+  color: var(--gb-darkest) !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="retro-gb"] .search-clear-btn:hover {
+  background: var(--gb-darkest) !important;
+  color: var(--gb-lightest) !important;
 }
 
 /* Filter Drawer */
@@ -24089,6 +24182,18 @@ body[data-theme="bloom"] {
   background: var(--bloom-accent) !important;
   color: #ffffff !important;
   box-shadow: 0 0 12px var(--bloom-glow);
+}
+
+[data-theme="bloom"] .search-clear-btn {
+  background: var(--bloom-surface-soft) !important;
+  border: 1px solid var(--bloom-border) !important;
+  color: var(--bloom-accent-deep) !important;
+}
+
+[data-theme="bloom"] .search-clear-btn:hover {
+  background: var(--bloom-accent) !important;
+  border-color: var(--bloom-accent) !important;
+  color: #ffffff !important;
 }
 
 /* Filter Drawer */
