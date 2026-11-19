@@ -280,6 +280,44 @@ body {
   color: #475569;
 }
 
+.settings-credits-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 2px;
+}
+
+.settings-credits-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+.settings-credits-brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.settings-credits-app-title {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.settings-credits-app-sub {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
 .settings-legal-card p {
   margin: 0;
 }

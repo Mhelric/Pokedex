@@ -566,6 +566,18 @@ body,
   color: var(--dark-text-muted);
 }
 
+[data-theme="classic-dark"] .settings-credits-brand {
+  border-bottom-color: var(--dark-border);
+}
+
+[data-theme="classic-dark"] .settings-credits-app-title {
+  color: var(--dark-text);
+}
+
+[data-theme="classic-dark"] .settings-credits-app-sub {
+  color: var(--dark-text-muted);
+}
+
 [data-theme="classic-dark"] .settings-legal-card strong,
 [data-theme="classic-dark"] .credit-value {
   color: var(--dark-text);
@@ -1196,6 +1208,20 @@ body,
   border: 2px solid var(--gb-darkest) !important;
   border-radius: 6px !important;
   color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .settings-credits-brand {
+  border-bottom: 2px dashed var(--gb-dark) !important;
+}
+
+[data-theme="retro-gb"] .settings-credits-app-title,
+[data-theme="retro-gb"] .settings-credits-app-sub {
+  color: var(--gb-darkest) !important;
+}
+
+[data-theme="retro-gb"] .settings-credits-logo {
+  border: 1.5px solid var(--gb-darkest) !important;
+  box-shadow: 2px 2px 0 var(--gb-darkest) !important;
 }
 
 [data-theme="retro-gb"] .settings-legal-card strong,
@@ -2326,6 +2352,18 @@ body[data-theme="bloom"] {
   border: 1.5px solid var(--bloom-border) !important;
   border-radius: 12px !important;
   color: var(--bloom-text) !important;
+}
+
+[data-theme="bloom"] .settings-credits-brand {
+  border-bottom-color: var(--bloom-border) !important;
+}
+
+[data-theme="bloom"] .settings-credits-app-title {
+  color: var(--bloom-text) !important;
+}
+
+[data-theme="bloom"] .settings-credits-app-sub {
+  color: var(--bloom-text-muted) !important;
 }
 
 [data-theme="bloom"] .settings-legal-card strong,

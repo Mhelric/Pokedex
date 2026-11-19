@@ -1,5 +1,5 @@
 // sw.js
-const SHELL_CACHE = "pokedex-shell-v18";
+const SHELL_CACHE = "pokedex-shell-v19";
 const API_CACHE = "pokedex-api-v1";
 const MAX_API_ENTRIES = 120;
 
@@ -7,6 +7,9 @@ const STATIC_ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
+  "./favicon.svg",
+  "./favicon.png",
+  "./favicon.ico",
   "./styles/main.css",
   "./styles/retro-ui.css",
   "./styles/themes.css",
